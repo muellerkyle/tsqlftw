@@ -31,6 +31,7 @@ public:
         // registers a class member functions 
         NODE_SET_PROTOTYPE_METHOD(s_ct, "Connect", Connect);
 		NODE_SET_PROTOTYPE_METHOD(s_ct, "Query", Query);
+		NODE_SET_PROTOTYPE_METHOD(s_ct, "Close", Close);
 
         target->Set(String::NewSymbol("tsqlftwObject"),
             s_ct->GetFunction());
@@ -54,19 +55,32 @@ public:
         return args.This();
     }
 
-    struct Baton {
+    struct BatonConnect {
         uv_work_t request;
         tsqlftwHelper* tsqlftwHelper;
         Persistent<Function> callback;
-        // A parameter that will be passed to the .Net library
-		std::string query;
-        // Tracking errors that happened in the worker function. You can use any
-        // variables you want. E.g. in some cases, it might be useful to report
-        // an error number.
+		std::string connString;
         bool error;
         std::string error_message;
+        std::string result;
+    };
 
-        // Custom data
+	struct BatonQuery {
+        uv_work_t request;
+        tsqlftwHelper* tsqlftwHelper;
+        Persistent<Function> callback;
+		std::string query;
+        bool error;
+        std::string error_message;
+        std::string result;
+    };
+
+	struct BatonClose {
+        uv_work_t request;
+        tsqlftwHelper* tsqlftwHelper;
+        Persistent<Function> callback;
+        bool error;
+        std::string error_message;
         std::string result;
     };
 
@@ -91,15 +105,15 @@ public:
         tsqlftwObject* so = ObjectWrap::Unwrap<tsqlftwObject>(args.This());
 
         // create a state object
-        Baton* baton = new Baton();
+        BatonConnect* baton = new BatonConnect();
         baton->request.data = baton;
         baton->tsqlftwHelper = so->_tsqlftwHelper;
         baton->callback = Persistent<Function>::New(callback);
-        baton->query = *v8::String::AsciiValue(connString);
+        baton->connString = *v8::String::AsciiValue(connString);
 
         // register a worker thread request
         uv_queue_work(uv_default_loop(), &baton->request,
-            StartAsync, AfterAsync);
+            StartConnect, AfterConnect);
 
         return Undefined();
 
@@ -126,7 +140,7 @@ public:
         tsqlftwObject* so = ObjectWrap::Unwrap<tsqlftwObject>(args.This());
 
         // create a state object
-        Baton* baton = new Baton();
+        BatonQuery* baton = new BatonQuery();
         baton->request.data = baton;
         baton->tsqlftwHelper = so->_tsqlftwHelper;
         baton->callback = Persistent<Function>::New(callback);
@@ -134,23 +148,47 @@ public:
 
         // register a worker thread request
         uv_queue_work(uv_default_loop(), &baton->request,
-            StartAsync, AfterAsync);
+            StartQuery, AfterQuery);
 
         return Undefined();
     }
 
-    // this runs on the worker thread and should not callback or interact with node/v8 in any way
-    static void StartAsync(uv_work_t* req)
-    {
-        Baton *baton = static_cast<Baton*>(req->data);
-        baton->error = baton->tsqlftwHelper->Query(baton->query, baton->error_message, baton->result);
-    }
-
-    // this runs on the main thread and can call back into the JavaScript
-    static void AfterAsync(uv_work_t *req)
+	static Handle<Value> Close(const Arguments& args)
     {
         HandleScope scope;
-        Baton* baton = static_cast<Baton*>(req->data);
+
+        if (!args[0]->IsFunction()) {
+            return ThrowException(Exception::TypeError(
+                String::New("First argument must be a callback function")));
+        }
+
+        Local<Function> callback = Local<Function>::Cast(args[0]);
+
+        tsqlftwObject* so = ObjectWrap::Unwrap<tsqlftwObject>(args.This());
+
+        // create a state object
+        BatonClose* baton = new BatonClose();
+        baton->request.data = baton;
+        baton->tsqlftwHelper = so->_tsqlftwHelper;
+        baton->callback = Persistent<Function>::New(callback);
+
+        // register a worker thread request
+        uv_queue_work(uv_default_loop(), &baton->request,
+            StartClose, AfterClose);
+
+        return Undefined();
+    }
+
+    static void StartConnect(uv_work_t* req)
+    {
+        BatonConnect *baton = static_cast<BatonConnect*>(req->data);
+        baton->error = baton->tsqlftwHelper->Connect(baton->connString, baton->error_message, baton->result);
+    }
+
+    static void AfterConnect(uv_work_t *req)
+    {
+        HandleScope scope;
+        BatonConnect* baton = static_cast<BatonConnect*>(req->data);
 
         if (baton->error) 
         {
@@ -185,6 +223,97 @@ public:
         baton->callback.Dispose();
         delete baton;
     }
+
+    static void StartQuery(uv_work_t* req)
+    {
+        BatonQuery *baton = static_cast<BatonQuery*>(req->data);
+        baton->error = baton->tsqlftwHelper->Query(baton->query, baton->error_message, baton->result);
+    }
+
+    static void AfterQuery(uv_work_t *req)
+    {
+        HandleScope scope;
+        BatonQuery* baton = static_cast<BatonQuery*>(req->data);
+
+        if (baton->error) 
+        {
+            Local<Value> err = Exception::Error(
+                String::New(baton->error_message.c_str()));
+            Local<Value> argv[] = { err };
+
+            TryCatch try_catch;
+            baton->callback->Call(
+                Context::GetCurrent()->Global(), 1, argv);
+
+            if (try_catch.HasCaught()) {
+                node::FatalException(try_catch);
+            }        
+        } 
+        else 
+        {
+            const unsigned argc = 2;
+            Local<Value> argv[argc] = {
+                Local<Value>::New(Null()),
+                Local<Value>::New(String::New(baton->result.c_str()))
+            };
+
+            TryCatch try_catch;
+            baton->callback->Call(Context::GetCurrent()->Global(), argc, argv);
+
+            if (try_catch.HasCaught()) {
+                FatalException(try_catch);
+            }
+        }
+
+        baton->callback.Dispose();
+        delete baton;
+    }
+
+    static void StartClose(uv_work_t* req)
+    {
+        BatonClose *baton = static_cast<BatonClose*>(req->data);
+        baton->error = baton->tsqlftwHelper->Close(baton->error_message, baton->result);
+    }
+
+    static void AfterClose(uv_work_t *req)
+    {
+        HandleScope scope;
+        BatonClose* baton = static_cast<BatonClose*>(req->data);
+
+        if (baton->error) 
+        {
+            Local<Value> err = Exception::Error(
+                String::New(baton->error_message.c_str()));
+            Local<Value> argv[] = { err };
+
+            TryCatch try_catch;
+            baton->callback->Call(
+                Context::GetCurrent()->Global(), 1, argv);
+
+            if (try_catch.HasCaught()) {
+                node::FatalException(try_catch);
+            }        
+        } 
+        else 
+        {
+            const unsigned argc = 2;
+            Local<Value> argv[argc] = {
+                Local<Value>::New(Null()),
+                Local<Value>::New(String::New(baton->result.c_str()))
+            };
+
+            TryCatch try_catch;
+            baton->callback->Call(Context::GetCurrent()->Global(), argc, argv);
+
+            if (try_catch.HasCaught()) {
+                FatalException(try_catch);
+            }
+        }
+
+        baton->callback.Dispose();
+        delete baton;
+    }
+
 };
 
 Persistent<FunctionTemplate> tsqlftwObject::s_ct;
