@@ -37,7 +37,7 @@ namespace tsqlftw
             {
                 var cmd = new SqlCommand(query, Conn);
                 var res = cmd.ExecuteReader();
-                var count = -1;
+                var count = 0;
                 while (res.Read())
                 {
                     count++;
