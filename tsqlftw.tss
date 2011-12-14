@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>C:\git\node.net\tsqlftw\tsqlftwHelper.cpp</string>
+      <string>C:\git\node.net\tsqlftw\tsqlftwHelper.h</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\git\node.net\tsqlftwLib\tsqlftwClass.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\git\node.net\tsqlftw\tsqlftw.cpp</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\program files\microsoft sdks\windows\v7.0a\include\objbase.h</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>

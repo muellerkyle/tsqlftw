@@ -1,0 +1,125 @@
+<Configuration>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="17CEA729-1E55-4E47-BD12-1FDE7B23124E/d:Properties/f:AssemblyInfo.cs" caret="0" fromTop="0" />
+      <File id="17CEA729-1E55-4E47-BD12-1FDE7B23124E/f:tsqlftwClass.cs" caret="1031" fromTop="41" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.h" caret="321" fromTop="15" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftw.cpp" caret="2009" fromTop="54" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.cpp" caret="817" fromTop="18" />
+      <File id="11359B1B-2006-4B13-B7B6-820D00D47AFB/f:objbase.h" caret="34175" fromTop="9" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.cpp" caret="82" fromTop="2" />
+      <File id="17CEA729-1E55-4E47-BD12-1FDE7B23124E/f:tsqlftwClass.cs" caret="181" fromTop="7" />
+      <File id="17CEA729-1E55-4E47-BD12-1FDE7B23124E/f:tsqlftwClass.cs" caret="1823" fromTop="24" />
+      <File id="17CEA729-1E55-4E47-BD12-1FDE7B23124E/f:tsqlftwClass.cs" caret="584" fromTop="25" />
+      <File id="17CEA729-1E55-4E47-BD12-1FDE7B23124E/f:tsqlftwClass.cs" caret="489" fromTop="22" />
+      <File id="17CEA729-1E55-4E47-BD12-1FDE7B23124E/f:tsqlftwClass.cs" caret="306" fromTop="10" />
+      <File id="17CEA729-1E55-4E47-BD12-1FDE7B23124E/f:tsqlftwClass.cs" caret="1756" fromTop="20" />
+      <File id="17CEA729-1E55-4E47-BD12-1FDE7B23124E/f:tsqlftwClass.cs" caret="1711" fromTop="29" />
+      <File id="17CEA729-1E55-4E47-BD12-1FDE7B23124E/f:tsqlftwClass.cs" caret="1484" fromTop="28" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftw.cpp" caret="5047" fromTop="22" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.cpp" caret="1471" fromTop="10" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.cpp" caret="1484" fromTop="15" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.cpp" caret="1484" fromTop="22" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.cpp" caret="1694" fromTop="20" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftw.cpp" caret="1609" fromTop="10" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftw.cpp" caret="3064" fromTop="19" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftw.cpp" caret="3573" fromTop="20" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.cpp" caret="1896" fromTop="26" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.cpp" caret="2147" fromTop="33" />
+      <File id="17CEA729-1E55-4E47-BD12-1FDE7B23124E/f:tsqlftwClass.cs" caret="635" fromTop="3" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.h" caret="321" fromTop="15" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.cpp" caret="1510" fromTop="8" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftwHelper.cpp" caret="1484" fromTop="17" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftw.cpp" caret="948" fromTop="9" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftw.cpp" caret="2572" fromTop="12" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftw.cpp" caret="2066" fromTop="10" />
+      <File id="74153EEB-90DB-4E5B-AA58-2AD21AEDD3CD/f:tsqlftw.cpp" caret="2009" fromTop="14" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="CSharpCodeCompletionContext">
+      <Item value="System" priority="61" />
+      <Item value="Data" priority="53" />
+      <Item value="SqlClient" priority="26" />
+      <Item value="using" priority="61" />
+      <Item value="Newtonsoft.Json" priority="30" />
+      <Item value="public" priority="63" />
+      <Item value="SqlConnection`0" priority="31" />
+      <Item value="Boolean`0" priority="31" />
+      <Item value="bool" priority="31" />
+      <Item value="string" priority="127" />
+      <Item value="this" priority="31" />
+      <Item value="new" priority="191" />
+      <Item value="SqlConnection" priority="28" />
+      <Item value="conn" priority="31" />
+      <Item value="try" priority="63" />
+      <Item value="catch" priority="63" />
+      <Item value="Exception`0" priority="63" />
+      <Item value="return" priority="95" />
+      <Item value="false" priority="31" />
+      <Item value="true" priority="31" />
+      <Item value="var" priority="255" />
+      <Item value="SqlCommand" priority="29" />
+      <Item value="query" priority="31" />
+      <Item value="cmd" priority="31" />
+      <Item value="CLSCompliantAttribute`0" priority="31" />
+      <Item value="object" priority="28" />
+      <Item value="output" priority="223" />
+      <Item value="Dictionary" priority="118" />
+      <Item value="int" priority="31" />
+      <Item value="while" priority="31" />
+      <Item value="res" priority="95" />
+      <Item value="count" priority="95" />
+      <Item value="finally" priority="31" />
+      <Item value="JsonConverter`0" priority="31" />
+      <Item value="for" priority="31" />
+      <Item value="i" priority="63" />
+      <Item value="x" priority="63" />
+      <Item value="recordSet" priority="63" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:tsqlftw.tsqlftwClass">
+      <Item value="conn" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.SqlClient.SqlConnection">
+      <Item value="Open`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.SqlClient.SqlCommand">
+      <Item value="ExecuteReader`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.SqlClient.SqlDataReader">
+      <Item value="Read`0" priority="26" />
+      <Item value="FieldCount" priority="26" />
+      <Item value="GetName`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.Dictionary`2">
+      <Item value="Clear`0" priority="26" />
+      <Item value="Add`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Newtonsoft.Json.JsonConvert">
+      <Item value="SerializeObject`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="ToString`0" priority="26" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>

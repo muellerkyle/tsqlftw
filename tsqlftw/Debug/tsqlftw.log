@@ -1,0 +1,23 @@
+﻿Build started 12/14/2011 11:27:12 AM.
+     1>Project "C:\git\node.net\tsqlftw\tsqlftw.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\tsqlftw.unsuccessfulbuild".
+       GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+     1>C:\Program Files\MSBuild\Microsoft.Cpp\v4.0\Microsoft.MetaGen.targets(91,5): warning : Required file "D:\GIT\NODE.NET\SHARPLIB\BIN\DEBUG\TSQLFTWLIB.DLL" is missing.
+         The previous error was converted to a warning because the task was called with ContinueOnError=true.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /analyze- /errorReport:prompt tsqlftw.cpp /clr:nostdlib 
+         tsqlftw.cpp
+     1>C:\node-v0.6.5\src\node_object_wrap.h(57): warning C4251: 'node::ObjectWrap::handle_' : class 'v8::Persistent<T>' needs to have dll-interface to be used by clients of class 'node::ObjectWrap'
+                 with
+                 [
+                     T=v8::Object
+                 ]
+     1>tsqlftw.cpp(33): error C2065: 'Connect' : undeclared identifier
+     1>tsqlftw.cpp(34): error C2065: 'Query' : undeclared identifier
+     1>Done Building Project "C:\git\node.net\tsqlftw\tsqlftw.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.10
