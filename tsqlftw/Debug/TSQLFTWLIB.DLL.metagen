@@ -14,3 +14,4 @@ Class tsqlftw.tsqlftwClass: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
   Methods:
     Connect(String): PrivateScope, Public, HideBySig
     Query(String): PrivateScope, Public, HideBySig
+    Close(): PrivateScope, Public, HideBySig

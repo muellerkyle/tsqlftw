@@ -40,11 +40,28 @@ public:
         _tsqlftwClass = gcnew tsqlftwClass();
     }
 
-    virtual bool Connect(std::string connString)
+    virtual bool Connect(std::string& connString, std::string& err, std::string& result)
     {
-        return  _tsqlftwClass->Connect(gcnew System::String(connString.c_str()));
+        try
+        {
+			System::String^ data = "false";
+            if (_tsqlftwClass->Connect(gcnew System::String(connString.c_str()))) data = "true";
+
+            System::IntPtr p = Marshal::StringToHGlobalAnsi(data);
+            result = static_cast<char*>(p.ToPointer());
+            Marshal::FreeHGlobal(p);
+            return false;
+        }
+        catch(System::Exception^ e)
+        {
+            System::IntPtr p = Marshal::StringToHGlobalAnsi(e->Message);
+            err = static_cast<char*>(p.ToPointer());
+            Marshal::FreeHGlobal(p);
+            return true;
+        }
     }
-    
+
+
     virtual bool Query(std::string& query, std::string& err, std::string& result)
     {
         try
@@ -64,6 +81,28 @@ public:
             return true;
         }
     }
+
+    virtual bool Close(std::string& err, std::string& result)
+    {
+        try
+        {
+			System::String^ data = "false";
+            if (_tsqlftwClass->Close()) data = "true";
+
+            System::IntPtr p = Marshal::StringToHGlobalAnsi(data);
+            result = static_cast<char*>(p.ToPointer());
+            Marshal::FreeHGlobal(p);
+            return false;
+        }
+        catch(System::Exception^ e)
+        {
+            System::IntPtr p = Marshal::StringToHGlobalAnsi(e->Message);
+            err = static_cast<char*>(p.ToPointer());
+            Marshal::FreeHGlobal(p);
+            return true;
+        }
+    }
+
 
 };
 

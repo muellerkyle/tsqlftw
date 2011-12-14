@@ -29,7 +29,6 @@ public:
         s_ct->SetClassName(String::NewSymbol("tsqlftwObject"));
 
         // registers a class member functions 
-        NODE_SET_PROTOTYPE_METHOD(s_ct, "async", Async);
         NODE_SET_PROTOTYPE_METHOD(s_ct, "Connect", Connect);
 		NODE_SET_PROTOTYPE_METHOD(s_ct, "Query", Query);
 
@@ -71,10 +70,39 @@ public:
         std::string result;
     };
 
-    static bool Connect(std::string connString)
+    static Handle<Value> Connect(const Arguments& args)
     {
-        l<bool> result = Integer::New(so->_tsqlftwHelper->Connect());
-        return scope.Close(result);
+        HandleScope scope;
+
+        if (!args[0]->IsString()) {
+            return ThrowException(Exception::TypeError(
+                String::New("First argument must be a string")));
+        }
+
+        if (!args[1]->IsFunction()) {
+            return ThrowException(Exception::TypeError(
+                String::New("Second argument must be a callback function")));
+        }
+
+        Local<String> connString = Local<String>::Cast(args[0]);
+        // There's no ToFunction(), use a Cast instead.
+        Local<Function> callback = Local<Function>::Cast(args[1]);
+
+        tsqlftwObject* so = ObjectWrap::Unwrap<tsqlftwObject>(args.This());
+
+        // create a state object
+        Baton* baton = new Baton();
+        baton->request.data = baton;
+        baton->tsqlftwHelper = so->_tsqlftwHelper;
+        baton->callback = Persistent<Function>::New(callback);
+        baton->query = *v8::String::AsciiValue(connString);
+
+        // register a worker thread request
+        uv_queue_work(uv_default_loop(), &baton->request,
+            StartAsync, AfterAsync);
+
+        return Undefined();
+
     }
 
     static Handle<Value> Query(const Arguments& args)

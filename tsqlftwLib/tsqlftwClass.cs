@@ -63,6 +63,19 @@ namespace tsqlftw
 
         }
 
+        public bool Close()
+        {
+            try
+            {
+                Conn.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public tsqlftwClass()
         {
 
