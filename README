@@ -1,3 +1,23 @@
 TSQLFTW - T-SQL For The WIN(dows)
 
-Work in progress... Planned as a full asynchronous method of using MSSQL with Node.
+Work in Progress... Currently supports Connect / Query / Close.
+
+This is the package for the C++/.NET Node Native Module.  The Debug folder holds the current working output.
+
+usage example:
+
+var db = require('./Debug/tsqlftw').tsqlftwObject;
+var mssql = new db();
+
+mssql.Connect('server=localhost\\sqlexpress;Trusted_Connection=yes;database=MyDB;', function (err, data) {
+    mssql.Query('select * from myTable', function (err, results) {
+        console.log(results.error);
+	console.log(results.count);
+	// result set is in results.rows and has a row number.
+	mssql.Close(function (err, results) {
+           console.log('Connection closed.');
+	});
+    });
+});
+
+
