@@ -6,7 +6,7 @@ This is the package for the C++/.NET Node Native Module.  The Debug folder holds
 
 usage example:
 
-var db = require('./Debug/tsqlftw').tsqlftwObject;
+var db = require('./tsqlftw').tsqlftwObject;
 var mssql = new db();
 
 mssql.Connect('server=localhost\\sqlexpress;Trusted_Connection=yes;database=MyDB;', function (err, data) {
