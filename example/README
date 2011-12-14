@@ -1,0 +1,14 @@
+To run this example:
+
+Use the provided db.sql to create the TestDB database and myTable table with data, or modify the script to use an existing database and table.
+
+run: node test.js
+
+Output for me is:
+-----------------------
+null
+{"error":"","count":1,"rows":{"0":{"col1":1,"col2":"test1"},"1":{"col1":2,"col2":"test2"}}}
+
+1
+Connection closed.
+-----------------------

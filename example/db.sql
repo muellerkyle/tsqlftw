@@ -1,0 +1,18 @@
+CREATE DATABASE [TestDB] ON  PRIMARY 
+( NAME = N'TestDB', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL10.SQLEXPRESS\MSSQL\DATA\TestDB.mdf' , SIZE = 2048KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'TestDB_log', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL10.SQLEXPRESS\MSSQL\DATA\TestDB_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+
+USE [TestDB]
+GO
+
+CREATE TABLE [dbo].[myTable](
+	[col1] [int] NULL,
+	[col2] [varchar](50) NULL
+) ON [PRIMARY]
+
+GO
+
+INSERT INTO myTable VALUES (1,'test1')
+INSERT INTO myTable VALUES (2,'test2')
