@@ -2,7 +2,7 @@ TSQLFTW - T-SQL For The WIN(dows) - by Fosco Marotto (gfosco@gmail.com)
 
 Work in Progress... Currently supports Connect / Query / Close.
 
-This is the package for the C++/.NET Node Native Module.  The Debug folder holds the current working output, and a working example resides in the /example folder.
+This is the package for the C++/.NET Node Module.  The Debug folder holds the current working output, and a working example resides in the /example folder.
 
 usage example:
 
@@ -25,6 +25,6 @@ mssql.Connect('server=localhost\\sqlexpress;Trusted_Connection=yes;database=MyDB
 
 
 Credits: 
-* saary - node.net native module example. https://github.com/saary/node.net
+* saary - node.net module example. https://github.com/saary/node.net
 * James Newton-King - JSON parser for .NET. http://james.newtonking.com/pages/json-net.aspx
 
