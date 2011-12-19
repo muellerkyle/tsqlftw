@@ -40,7 +40,7 @@ public:
         _tsqlftwClass = gcnew tsqlftwClass();
     }
 
-    virtual bool Connect(std::string& connString, std::string& err, std::string& result)
+    virtual bool connect(std::string& connString, std::string& err, std::string& result)
     {
         try
         {
@@ -62,7 +62,7 @@ public:
     }
 
 
-    virtual bool Query(std::string& query, std::string& err, std::string& result)
+    virtual bool query(std::string& query, std::string& err, std::string& result)
     {
         try
         {
@@ -82,7 +82,7 @@ public:
         }
     }
 
-    virtual bool Close(std::string& err, std::string& result)
+    virtual bool close(std::string& err, std::string& result)
     {
         try
         {

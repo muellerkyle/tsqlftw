@@ -9,7 +9,7 @@
 using namespace node;
 using namespace v8;
 
-class tsqlftwObject: ObjectWrap
+class tsqlftw: ObjectWrap
 {
 private:
     tsqlftwHelper* _tsqlftwHelper;
@@ -29,20 +29,20 @@ public:
         s_ct->SetClassName(String::NewSymbol("tsqlftwObject"));
 
         // registers a class member functions 
-        NODE_SET_PROTOTYPE_METHOD(s_ct, "Connect", Connect);
-		NODE_SET_PROTOTYPE_METHOD(s_ct, "Query", Query);
-		NODE_SET_PROTOTYPE_METHOD(s_ct, "Close", Close);
+        NODE_SET_PROTOTYPE_METHOD(s_ct, "connect", connect);
+		NODE_SET_PROTOTYPE_METHOD(s_ct, "query", query);
+		NODE_SET_PROTOTYPE_METHOD(s_ct, "close", close);
 
         target->Set(String::NewSymbol("tsqlftwObject"),
             s_ct->GetFunction());
     }
 
-    tsqlftwObject() 
+    tsqlftw() 
     {
         _tsqlftwHelper = tsqlftwHelper::New();
     }
 
-    ~tsqlftwObject()
+    ~tsqlftw()
     {
         delete _tsqlftwHelper;
     }
@@ -50,7 +50,7 @@ public:
     static Handle<Value> New(const Arguments& args)
     {
         HandleScope scope;
-        tsqlftwObject* pm = new tsqlftwObject();
+        tsqlftw* pm = new tsqlftw();
         pm->Wrap(args.This());
         return args.This();
     }
@@ -84,7 +84,7 @@ public:
         std::string result;
     };
 
-    static Handle<Value> Connect(const Arguments& args)
+    static Handle<Value> connect(const Arguments& args)
     {
         HandleScope scope;
 
@@ -102,7 +102,7 @@ public:
         // There's no ToFunction(), use a Cast instead.
         Local<Function> callback = Local<Function>::Cast(args[1]);
 
-        tsqlftwObject* so = ObjectWrap::Unwrap<tsqlftwObject>(args.This());
+        tsqlftw* so = ObjectWrap::Unwrap<tsqlftw>(args.This());
 
         // create a state object
         BatonConnect* baton = new BatonConnect();
@@ -119,7 +119,7 @@ public:
 
     }
 
-    static Handle<Value> Query(const Arguments& args)
+    static Handle<Value> query(const Arguments& args)
     {
         HandleScope scope;
 
@@ -137,7 +137,7 @@ public:
         // There's no ToFunction(), use a Cast instead.
         Local<Function> callback = Local<Function>::Cast(args[1]);
 
-        tsqlftwObject* so = ObjectWrap::Unwrap<tsqlftwObject>(args.This());
+        tsqlftw* so = ObjectWrap::Unwrap<tsqlftw>(args.This());
 
         // create a state object
         BatonQuery* baton = new BatonQuery();
@@ -153,7 +153,7 @@ public:
         return Undefined();
     }
 
-	static Handle<Value> Close(const Arguments& args)
+	static Handle<Value> close(const Arguments& args)
     {
         HandleScope scope;
 
@@ -164,7 +164,7 @@ public:
 
         Local<Function> callback = Local<Function>::Cast(args[0]);
 
-        tsqlftwObject* so = ObjectWrap::Unwrap<tsqlftwObject>(args.This());
+        tsqlftw* so = ObjectWrap::Unwrap<tsqlftw>(args.This());
 
         // create a state object
         BatonClose* baton = new BatonClose();
@@ -182,7 +182,7 @@ public:
     static void StartConnect(uv_work_t* req)
     {
         BatonConnect *baton = static_cast<BatonConnect*>(req->data);
-        baton->error = baton->tsqlftwHelper->Connect(baton->connString, baton->error_message, baton->result);
+        baton->error = baton->tsqlftwHelper->connect(baton->connString, baton->error_message, baton->result);
     }
 
     static void AfterConnect(uv_work_t *req)
@@ -227,7 +227,7 @@ public:
     static void StartQuery(uv_work_t* req)
     {
         BatonQuery *baton = static_cast<BatonQuery*>(req->data);
-        baton->error = baton->tsqlftwHelper->Query(baton->query, baton->error_message, baton->result);
+        baton->error = baton->tsqlftwHelper->query(baton->query, baton->error_message, baton->result);
     }
 
     static void AfterQuery(uv_work_t *req)
@@ -272,7 +272,7 @@ public:
     static void StartClose(uv_work_t* req)
     {
         BatonClose *baton = static_cast<BatonClose*>(req->data);
-        baton->error = baton->tsqlftwHelper->Close(baton->error_message, baton->result);
+        baton->error = baton->tsqlftwHelper->close(baton->error_message, baton->result);
     }
 
     static void AfterClose(uv_work_t *req)
@@ -316,12 +316,12 @@ public:
 
 };
 
-Persistent<FunctionTemplate> tsqlftwObject::s_ct;
+Persistent<FunctionTemplate> tsqlftw::s_ct;
 
 extern "C" {
     void NODE_EXTERN init (Handle<Object> target)
     {
-        tsqlftwObject::Init(target);
+        tsqlftw::Init(target);
         LoadAssembly();
     }
     NODE_MODULE(tsqlftw, init);
