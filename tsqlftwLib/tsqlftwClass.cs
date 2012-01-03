@@ -31,7 +31,7 @@ namespace tsqlftw
         public string Query(string query)
         {
             var output = new Dictionary<string,object>();
-            var recordSet = new Dictionary<int, Dictionary<string, object>>();
+            var recordSet = new List<Dictionary<string, object>>();
 
             try
             {
@@ -46,7 +46,7 @@ namespace tsqlftw
                     {
                         x[res.GetName(i)] = res.GetValue(i);
                     }
-                    recordSet.Add(count,x);
+                    recordSet.Add(x);
                 }
                 output["error"] = "";
                 output["count"] = count;
