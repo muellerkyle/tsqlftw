@@ -26,14 +26,14 @@ public:
         // set the node.js/v8 class name
         s_ct = Persistent<FunctionTemplate>::New(t);
         s_ct->InstanceTemplate()->SetInternalFieldCount(1);
-        s_ct->SetClassName(String::NewSymbol("tsqlftwObject"));
+        s_ct->SetClassName(String::NewSymbol("tsqlftw"));
 
         // registers a class member functions 
         NODE_SET_PROTOTYPE_METHOD(s_ct, "connect", connect);
 		NODE_SET_PROTOTYPE_METHOD(s_ct, "query", query);
 		NODE_SET_PROTOTYPE_METHOD(s_ct, "close", close);
 
-        target->Set(String::NewSymbol("tsqlftwObject"),
+        target->Set(String::NewSymbol("tsqlftw"),
             s_ct->GetFunction());
     }
 

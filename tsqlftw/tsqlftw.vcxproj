@@ -42,8 +42,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\node-v0.6.5\deps\v8\include;C:\node-v0.6.5\deps\uv\include;C:\node-v0.6.5\src;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\node-v0.6.5\Debug;C:\node-v0.6.5\Debug\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\node-v0.6.7\deps\v8\include;C:\node-v0.6.7\deps\uv\include;C:\node-v0.6.7\src;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\node-v0.6.7\Debug;C:\node-v0.6.7\Debug\lib;$(LibraryPath)</LibraryPath>
     <TargetExt>.node</TargetExt>
     <ReferencePath>C:\Git\node.net\tsqlftwLib\bin;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
