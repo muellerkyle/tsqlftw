@@ -1,6 +1,7 @@
 #include "tsqlftwHelper.h"
 #using <mscorlib.dll>
-#using <C:\Git\node.net\tsqlftwLib\bin\Debug\tsqlftwLib.dll>
+//#using <C:\Git\node.net\tsqlftwLib\bin\Debug\tsqlftwLib.dll>
+#using <tsqlftwLib.dll>
 #include <gcroot.h>
 
 using namespace System::Runtime::InteropServices;
