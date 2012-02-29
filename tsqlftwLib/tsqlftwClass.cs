@@ -48,6 +48,7 @@ namespace tsqlftw
                     }
                     recordSet.Add(x);
                 }
+				res.Close();
                 output["error"] = "";
                 output["count"] = count;
                 output["rows"] = recordSet;
